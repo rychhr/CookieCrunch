@@ -8,6 +8,14 @@
 
 @import Foundation;
 
+@class HRYCookie;
+
+extern const NSInteger HRYLevelNumColumns;
+extern const NSInteger HRYLevelNumRows;
+
 @interface HRYLevel : NSObject
+
+- (NSSet *)shuffle;
+- (HRYCookie *)cookieAtColumn:(NSInteger)column row:(NSInteger)row;
 
 @end
