@@ -25,6 +25,7 @@
 		47788AB41946D2F20008B100 /* CookieCrunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47788AB31946D2F20008B100 /* CookieCrunchTests.m */; };
 		47852F671946E30B0095AB68 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 47852F661946E30B0095AB68 /* Sprites.atlas */; };
 		47852F6A1946E6440095AB68 /* HRYCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 47852F691946E6440095AB68 /* HRYCookie.m */; };
+		47AF61E41947250F00B898B9 /* HRYLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AF61E31947250F00B898B9 /* HRYLevel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		47852F661946E30B0095AB68 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		47852F681946E6440095AB68 /* HRYCookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRYCookie.h; sourceTree = "<group>"; };
 		47852F691946E6440095AB68 /* HRYCookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRYCookie.m; sourceTree = "<group>"; };
+		47AF61E21947250F00B898B9 /* HRYLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRYLevel.h; sourceTree = "<group>"; };
+		47AF61E31947250F00B898B9 /* HRYLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRYLevel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				47788A9C1946D2F20008B100 /* HRYMyScene.m */,
 				47852F681946E6440095AB68 /* HRYCookie.h */,
 				47852F691946E6440095AB68 /* HRYCookie.m */,
+				47AF61E21947250F00B898B9 /* HRYLevel.h */,
+				47AF61E31947250F00B898B9 /* HRYLevel.m */,
 				47788AA01946D2F20008B100 /* Images.xcassets */,
 				47788A8A1946D2F20008B100 /* Supporting Files */,
 			);
@@ -270,6 +275,7 @@
 			files = (
 				47788A941946D2F20008B100 /* HRYAppDelegate.m in Sources */,
 				47852F6A1946E6440095AB68 /* HRYCookie.m in Sources */,
+				47AF61E41947250F00B898B9 /* HRYLevel.m in Sources */,
 				47788A9A1946D2F20008B100 /* HRYViewController.m in Sources */,
 				47788A9D1946D2F20008B100 /* HRYMyScene.m in Sources */,
 				47788A901946D2F20008B100 /* main.m in Sources */,
