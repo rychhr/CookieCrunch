@@ -17,7 +17,6 @@
 		47788A971946D2F20008B100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47788A951946D2F20008B100 /* Main.storyboard */; };
 		47788A9A1946D2F20008B100 /* HRYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47788A991946D2F20008B100 /* HRYViewController.m */; };
 		47788A9D1946D2F20008B100 /* HRYMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 47788A9C1946D2F20008B100 /* HRYMyScene.m */; };
-		47788A9F1946D2F20008B100 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 47788A9E1946D2F20008B100 /* Spaceship.png */; };
 		47788AA11946D2F20008B100 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47788AA01946D2F20008B100 /* Images.xcassets */; };
 		47788AA81946D2F20008B100 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47788AA71946D2F20008B100 /* XCTest.framework */; };
 		47788AA91946D2F20008B100 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47788A811946D2F20008B100 /* Foundation.framework */; };
@@ -54,7 +53,6 @@
 		47788A991946D2F20008B100 /* HRYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRYViewController.m; sourceTree = "<group>"; };
 		47788A9B1946D2F20008B100 /* HRYMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRYMyScene.h; sourceTree = "<group>"; };
 		47788A9C1946D2F20008B100 /* HRYMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRYMyScene.m; sourceTree = "<group>"; };
-		47788A9E1946D2F20008B100 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		47788AA01946D2F20008B100 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		47788AA61946D2F20008B100 /* CookieCrunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookieCrunchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47788AA71946D2F20008B100 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -131,7 +129,6 @@
 				47788A991946D2F20008B100 /* HRYViewController.m */,
 				47788A9B1946D2F20008B100 /* HRYMyScene.h */,
 				47788A9C1946D2F20008B100 /* HRYMyScene.m */,
-				47788A9E1946D2F20008B100 /* Spaceship.png */,
 				47788AA01946D2F20008B100 /* Images.xcassets */,
 				47788A8A1946D2F20008B100 /* Supporting Files */,
 			);
@@ -246,7 +243,6 @@
 			files = (
 				47788A8E1946D2F20008B100 /* InfoPlist.strings in Resources */,
 				47788AA11946D2F20008B100 /* Images.xcassets in Resources */,
-				47788A9F1946D2F20008B100 /* Spaceship.png in Resources */,
 				47788A971946D2F20008B100 /* Main.storyboard in Resources */,
 				47852F671946E30B0095AB68 /* Sprites.atlas in Resources */,
 			);
