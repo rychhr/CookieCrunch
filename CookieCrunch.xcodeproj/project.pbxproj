@@ -24,6 +24,7 @@
 		47788AAA1946D2F20008B100 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47788A851946D2F20008B100 /* UIKit.framework */; };
 		47788AB21946D2F20008B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47788AB01946D2F20008B100 /* InfoPlist.strings */; };
 		47788AB41946D2F20008B100 /* CookieCrunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47788AB31946D2F20008B100 /* CookieCrunchTests.m */; };
+		47852F671946E30B0095AB68 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 47852F661946E30B0095AB68 /* Sprites.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		47788AAF1946D2F20008B100 /* CookieCrunchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CookieCrunchTests-Info.plist"; sourceTree = "<group>"; };
 		47788AB11946D2F20008B100 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47788AB31946D2F20008B100 /* CookieCrunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookieCrunchTests.m; sourceTree = "<group>"; };
+		47852F661946E30B0095AB68 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		47788A891946D2F20008B100 /* CookieCrunch */ = {
 			isa = PBXGroup;
 			children = (
+				47852F661946E30B0095AB68 /* Sprites.atlas */,
 				47788A921946D2F20008B100 /* HRYAppDelegate.h */,
 				47788A931946D2F20008B100 /* HRYAppDelegate.m */,
 				47788A951946D2F20008B100 /* Main.storyboard */,
@@ -245,6 +248,7 @@
 				47788AA11946D2F20008B100 /* Images.xcassets in Resources */,
 				47788A9F1946D2F20008B100 /* Spaceship.png in Resources */,
 				47788A971946D2F20008B100 /* Main.storyboard in Resources */,
+				47852F671946E30B0095AB68 /* Sprites.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
