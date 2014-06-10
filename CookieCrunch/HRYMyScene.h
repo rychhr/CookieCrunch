@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Ryoichi Hara. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
+@import SpriteKit;
 
 @interface HRYMyScene : SKScene
 
