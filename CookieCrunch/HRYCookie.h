@@ -8,6 +8,18 @@
 
 @import Foundation;
 
+@class SKSpriteNode;
+
+extern const NSUInteger HRYCookieNumCookieTypes;
+
 @interface HRYCookie : NSObject
+
+@property (nonatomic, assign) NSInteger column;
+@property (nonatomic, assign) NSInteger row;
+@property (nonatomic, assign) NSUInteger cookieType;
+@property (nonatomic, strong) SKSpriteNode *sprite;
+
+- (NSString *)spriteName;
+- (NSString *)highlightedSpriteName;
 
 @end
