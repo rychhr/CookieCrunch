@@ -7,6 +7,18 @@
 //
 
 #import "HRYMyScene.h"
+#import "HRYCookie.h"
+#import "HRYLevel.h"
+
+static const CGFloat kTileWidth  = 32.0f;
+static const CGFloat kTileHeight = 36.0f;
+
+@interface HRYMyScene ()
+
+@property (nonatomic, strong) SKNode *gameLayer;
+@property (nonatomic, strong) SKNode *cookiesLayer;
+
+@end
 
 @implementation HRYMyScene
 
@@ -18,9 +30,47 @@
 
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"Background"];
         [self addChild:background];
+
+        _gameLayer = [SKNode node];
+        [self addChild:_gameLayer];
+
+        CGPoint layerPosition = CGPointMake(
+            -(kTileWidth * HRYLevelNumColumns) / 2,
+            -(kTileHeight * HRYLevelNumRows) / 2
+        );
+
+        _cookiesLayer = [SKNode node];
+        _cookiesLayer.position = layerPosition;
+
+        [_gameLayer addChild:_cookiesLayer];
     }
 
     return self;
+}
+
+#pragma mark - Public
+
+- (void)addSpritesForCookies:(NSSet *)cookies {
+    for (HRYCookie *cookie in cookies) {
+        SKSpriteNode *sprite =[SKSpriteNode spriteNodeWithImageNamed:[cookie spriteName]];
+        sprite.position = [self p_pointForColumn:cookie.column row:cookie.row];
+        [self.cookiesLayer addChild:sprite];
+        cookie.sprite = sprite;
+    }
+}
+
+#pragma mark - Private
+
+/**
+ *  Converts a column and row number into CGPoint that is relative to the cookieLayer
+ *
+ *  @param column
+ *  @param row
+ *
+ *  @return the center of the cookie's SKSpriteNode
+ */
+- (CGPoint)p_pointForColumn:(NSInteger)column row:(NSInteger)row {
+    return CGPointMake(column * kTileWidth + kTileWidth / 2, row * kTileHeight + kTileHeight / 2);
 }
 
 @end
