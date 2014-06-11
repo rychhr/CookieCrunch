@@ -9,13 +9,18 @@
 @import Foundation;
 
 @class HRYCookie;
+@class HRYTile;
 
 extern const NSInteger HRYLevelNumColumns;
 extern const NSInteger HRYLevelNumRows;
 
 @interface HRYLevel : NSObject
 
-- (NSSet *)shuffle;
+- (instancetype)initWithFile:(NSString *)filename;
+
+- (HRYTile *)tileAtColumn:(NSInteger)column row:(NSInteger)row;
 - (HRYCookie *)cookieAtColumn:(NSInteger)column row:(NSInteger)row;
+
+- (NSSet *)shuffle;
 
 @end

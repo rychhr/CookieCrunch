@@ -38,7 +38,7 @@
     self.scene.scaleMode = SKSceneScaleModeAspectFill;
 
     // Load the level.
-    self.level = [[HRYLevel alloc] init];
+    self.level = [[HRYLevel alloc] initWithFile:@"Level_1"];
     self.scene.level = self.level;
 
     // Present the scene.
