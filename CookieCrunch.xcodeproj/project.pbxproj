@@ -30,6 +30,7 @@
 		479CA19D1948213800E9236C /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 479CA1981948213800E9236C /* Level_2.json */; };
 		479CA19E1948213800E9236C /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 479CA1991948213800E9236C /* Level_3.json */; };
 		479CA19F1948213800E9236C /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 479CA19A1948213800E9236C /* Level_4.json */; };
+		479CA1A2194821B700E9236C /* HRYTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 479CA1A1194821B700E9236C /* HRYTile.m */; };
 		47AF61E41947250F00B898B9 /* HRYLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AF61E31947250F00B898B9 /* HRYLevel.m */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,8 @@
 		479CA1981948213800E9236C /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
 		479CA1991948213800E9236C /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
 		479CA19A1948213800E9236C /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
+		479CA1A0194821B700E9236C /* HRYTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRYTile.h; sourceTree = "<group>"; };
+		479CA1A1194821B700E9236C /* HRYTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRYTile.m; sourceTree = "<group>"; };
 		47AF61E21947250F00B898B9 /* HRYLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRYLevel.h; sourceTree = "<group>"; };
 		47AF61E31947250F00B898B9 /* HRYLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRYLevel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +153,8 @@
 				47852F691946E6440095AB68 /* HRYCookie.m */,
 				47AF61E21947250F00B898B9 /* HRYLevel.h */,
 				47AF61E31947250F00B898B9 /* HRYLevel.m */,
+				479CA1A0194821B700E9236C /* HRYTile.h */,
+				479CA1A1194821B700E9236C /* HRYTile.m */,
 				47788AA01946D2F20008B100 /* Images.xcassets */,
 				47788A8A1946D2F20008B100 /* Supporting Files */,
 			);
@@ -302,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47788A941946D2F20008B100 /* HRYAppDelegate.m in Sources */,
+				479CA1A2194821B700E9236C /* HRYTile.m in Sources */,
 				47852F6A1946E6440095AB68 /* HRYCookie.m in Sources */,
 				47AF61E41947250F00B898B9 /* HRYLevel.m in Sources */,
 				47788A9A1946D2F20008B100 /* HRYViewController.m in Sources */,
