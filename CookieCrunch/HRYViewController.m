@@ -41,6 +41,9 @@
     self.level = [[HRYLevel alloc] initWithFile:@"Level_1"];
     self.scene.level = self.level;
 
+    // Add tiles
+    [self.scene addTiles];
+
     // Present the scene.
     [skView presentScene:self.scene];
 

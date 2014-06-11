@@ -21,4 +21,9 @@
  */
 - (void)addSpritesForCookies:(NSSet *)cookies;
 
+/**
+ *  Creates a new tile sprite and adds it to the tiles layer.
+ */
+- (void)addTiles;
+
 @end

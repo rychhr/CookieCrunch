@@ -17,6 +17,7 @@ static const CGFloat kTileHeight = 36.0f;
 
 @property (nonatomic, strong) SKNode *gameLayer;
 @property (nonatomic, strong) SKNode *cookiesLayer;
+@property (nonatomic, strong) SKNode *tilesLayer;
 
 @end
 
@@ -39,6 +40,10 @@ static const CGFloat kTileHeight = 36.0f;
             -(kTileHeight * HRYLevelNumRows) / 2
         );
 
+        _tilesLayer = [SKNode node];
+        _tilesLayer.position = layerPosition;
+        [_gameLayer addChild:_tilesLayer];
+
         _cookiesLayer = [SKNode node];
         _cookiesLayer.position = layerPosition;
 
@@ -56,6 +61,21 @@ static const CGFloat kTileHeight = 36.0f;
         sprite.position = [self p_pointForColumn:cookie.column row:cookie.row];
         [self.cookiesLayer addChild:sprite];
         cookie.sprite = sprite;
+    }
+}
+
+- (void)addTiles {
+    for (NSInteger row = 0; row < HRYLevelNumRows; row++) {
+
+        for (NSInteger column = 0; column < HRYLevelNumColumns; column++) {
+
+            if ([self.level tileAtColumn:column row:row]) {
+                SKSpriteNode *tileNode = [SKSpriteNode spriteNodeWithImageNamed:@"Tile"];
+                tileNode.position = [self p_pointForColumn:column row:row];
+
+                [self.tilesLayer addChild:tileNode];
+            }
+        }
     }
 }
 
