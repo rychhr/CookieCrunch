@@ -8,28 +8,58 @@
 
 #import "HRYViewController.h"
 #import "HRYMyScene.h"
+#import "HRYLevel.h"
+
+@interface HRYViewController ()
+
+@property (nonatomic, strong) HRYLevel *level;
+@property (nonatomic, strong) HRYMyScene *scene;
+
+@end
 
 @implementation HRYViewController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    SKView *skView = (SKView *)self.view;
+    skView.multipleTouchEnabled = NO;
+
+#ifdef DEBUG
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
-    
+#endif
+
     // Create and configure the scene.
-    SKScene * scene = [HRYMyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
+    self.scene = [HRYMyScene sceneWithSize:skView.bounds.size];
+    self.scene.scaleMode = SKSceneScaleModeAspectFill;
+
+    // Load the level.
+    self.level = [[HRYLevel alloc] init];
+    self.scene.level = self.level;
+
     // Present the scene.
-    [skView presentScene:scene];
+    [skView presentScene:self.scene];
+
+    // Let's start the game!
+    [self p_beginGame];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - Status bar
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+#pragma mark - Orientations
 
 - (BOOL)shouldAutorotate {
     return YES;
@@ -44,9 +74,15 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+#pragma mark - Private
+
+- (void)p_beginGame {
+    [self p_shuffle];
+}
+
+- (void)p_shuffle {
+    NSSet *newCookies = [self.level shuffle];
+    [self.scene addSpritesForCookies:newCookies];
 }
 
 @end
