@@ -44,6 +44,17 @@
     // Add tiles
     [self.scene addTiles];
 
+    void (^swipeHandler)(HRYSwap *) = ^(HRYSwap *swap) {
+        self.view.userInteractionEnabled = NO;
+
+        [self.level performSwap:swap];
+        [self.scene animateSwap:swap completion:^{
+            self.view.userInteractionEnabled = YES;
+        }];
+    };
+
+    self.scene.swipeHandler = swipeHandler;
+
     // Present the scene.
     [skView presentScene:self.scene];
 

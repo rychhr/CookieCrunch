@@ -9,6 +9,7 @@
 #import "HRYMyScene.h"
 #import "HRYCookie.h"
 #import "HRYLevel.h"
+#import "HRYSwap.h"
 
 static const CGFloat kTileWidth  = 32.0f;
 static const CGFloat kTileHeight = 36.0f;
@@ -148,6 +149,24 @@ static const CGFloat kTileHeight = 36.0f;
     }
 }
 
+- (void)animateSwap:(HRYSwap *)swap completion:(dispatch_block_t)completion {
+    // Put the cookie you started with on top.
+    swap.cookieA.sprite.zPosition = 100.0f;
+    swap.cookieB.sprite.zPosition = 90.0f;
+
+    const NSTimeInterval duration = 0.3;
+
+    SKAction *moveA = [SKAction moveTo:swap.cookieB.sprite.position duration:duration];
+    moveA.timingMode = SKActionTimingEaseOut;
+
+    [swap.cookieA.sprite runAction:[SKAction sequence:@[moveA, [SKAction runBlock:completion]]]];
+
+    SKAction *moveB = [SKAction moveTo:swap.cookieA.sprite.position duration:duration];
+    moveB.timingMode = SKActionTimingEaseOut;
+
+    [swap.cookieB.sprite runAction:moveB];
+}
+
 #pragma mark - Private
 
 /**
@@ -196,7 +215,13 @@ static const CGFloat kTileHeight = 36.0f;
 
     HRYCookie *fromCookie = [self.level cookieAtColumn:self.swipeFromColumn row:self.swipeFromRow];
 
-    NSLog(@"*** Swapping %@ with %@", fromCookie, toCookie);
+    if (self.swipeHandler) {
+        HRYSwap *swap = [[HRYSwap alloc] init];
+        swap.cookieA = fromCookie;
+        swap.cookieB = toCookie;
+
+        self.swipeHandler(swap);
+    }
 }
 
 @end

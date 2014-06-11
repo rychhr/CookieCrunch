@@ -10,6 +10,7 @@
 
 @class HRYCookie;
 @class HRYTile;
+@class HRYSwap;
 
 extern const NSInteger HRYLevelNumColumns;
 extern const NSInteger HRYLevelNumRows;
@@ -22,5 +23,6 @@ extern const NSInteger HRYLevelNumRows;
 - (HRYCookie *)cookieAtColumn:(NSInteger)column row:(NSInteger)row;
 
 - (NSSet *)shuffle;
+- (void)performSwap:(HRYSwap *)swap;
 
 @end
