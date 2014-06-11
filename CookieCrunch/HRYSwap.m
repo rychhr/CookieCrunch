@@ -10,4 +10,8 @@
 
 @implementation HRYSwap
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ swap %@ with %@", [super description], self.cookieA, self.cookieB];
+}
+
 @end

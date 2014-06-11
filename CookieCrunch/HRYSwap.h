@@ -8,6 +8,11 @@
 
 @import Foundation;
 
+@class HRYCookie;
+
 @interface HRYSwap : NSObject
+
+@property (nonatomic, strong) HRYCookie *cookieA;
+@property (nonatomic, strong) HRYCookie *cookieB;
 
 @end
