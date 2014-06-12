@@ -106,7 +106,27 @@ const NSInteger HRYLevelNumRows    = 9;
             if (_tiles[column][row]) {
 
                 // Picks a random cookie type
-                NSUInteger cookieType = arc4random_uniform(HRYCookieNumCookieTypes) + 1;
+                NSUInteger cookieType;
+
+                // Only look to the left or below because there are no cookies yet on the right or above
+                do {
+                    cookieType = arc4random_uniform(HRYCookieNumCookieTypes) + 1;
+                }
+                while ((column >= 2 &&
+                        _cookies[column - 1][row].cookieType == cookieType &&
+                        _cookies[column - 2][row].cookieType == cookieType)
+                       ||
+                       (row >= 2 &&
+                        _cookies[column][row - 1].cookieType == cookieType &&
+                        _cookies[column][row - 2].cookieType == cookieType));
+
+                /*
+                 * do {
+                 *     generate a new random number between 1 and 6
+                 * }
+                 * while (there are already two cookies fo this type to the left
+                 *     or there are already two cookies of this type below);
+                 */
 
                 HRYCookie *cookie = [self p_createCookieAtColumn:column row:row withType:cookieType];
                 [set addObject:cookie];
