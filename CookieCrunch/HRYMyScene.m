@@ -21,6 +21,7 @@ static const CGFloat kTileHeight = 36.0f;
 @property (nonatomic, strong) SKNode *tilesLayer;
 @property (nonatomic, assign) NSInteger swipeFromColumn;
 @property (nonatomic, assign) NSInteger swipeFromRow;
+@property (nonatomic, strong) SKSpriteNode *selectionSprite;
 
 @end
 
@@ -55,6 +56,8 @@ static const CGFloat kTileHeight = 36.0f;
         [_gameLayer addChild:_cookiesLayer];
 
         _swipeFromColumn = _swipeFromRow = NSNotFound;
+
+        _selectionSprite = [SKSpriteNode node];
     }
 
     return self;
@@ -72,6 +75,7 @@ static const CGFloat kTileHeight = 36.0f;
 
         // Verify that the touch is on a cookie rather than on an empty square
         if (cookie) {
+            [self p_showSelectionIndicatorForCookie:cookie];
 
             // Record the start point of a swipe motion
             self.swipeFromColumn = column;
@@ -109,6 +113,8 @@ static const CGFloat kTileHeight = 36.0f;
             // Perform the swap if the player swiped out of the old square
             [self p_trySwapHorizontal:horzDelta vertical:vertDelta];
 
+            [self p_hideSelectionIndicator];
+
             // The game will ignore the rest of this swipe motion
             self.swipeFromColumn = NSNotFound;
         }
@@ -117,6 +123,10 @@ static const CGFloat kTileHeight = 36.0f;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     self.swipeFromColumn = self.swipeFromRow = NSNotFound;
+
+    if (self.selectionSprite.parent && self.swipeFromColumn != NSNotFound) {
+        [self p_hideSelectionIndicator];
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -222,6 +232,27 @@ static const CGFloat kTileHeight = 36.0f;
 
         self.swipeHandler(swap);
     }
+}
+
+- (void)p_showSelectionIndicatorForCookie:(HRYCookie *)cookie {
+    // If the selection is still visible, then first remove it.
+    if (self.selectionSprite.parent) {
+        [self.selectionSprite removeFromParent];
+    }
+
+    SKTexture *texture = [SKTexture textureWithImageNamed:[cookie highlightedSpriteName]];
+    self.selectionSprite.size = texture.size;
+    [self.selectionSprite runAction:[SKAction setTexture:texture]];
+
+    [cookie.sprite addChild:self.selectionSprite];
+    self.selectionSprite.alpha = 1.0f;
+}
+
+- (void)p_hideSelectionIndicator {
+    [self.selectionSprite runAction:[SKAction sequence:@[
+        [SKAction fadeOutWithDuration:0.3],
+        [SKAction removeFromParent]
+    ]]];
 }
 
 @end
