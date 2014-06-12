@@ -23,6 +23,13 @@ static const CGFloat kTileHeight = 36.0f;
 @property (nonatomic, assign) NSInteger swipeFromRow;
 @property (nonatomic, strong) SKSpriteNode *selectionSprite;
 
+// Sound Effetcs
+@property (nonatomic, strong) SKAction *swapSound;
+@property (nonatomic, strong) SKAction *invalidSwapSound;
+@property (nonatomic, strong) SKAction *matchSound;
+@property (nonatomic, strong) SKAction *failingCookieSound;
+@property (nonatomic, strong) SKAction *addCookieSound;
+
 @end
 
 @implementation HRYMyScene
@@ -58,6 +65,8 @@ static const CGFloat kTileHeight = 36.0f;
         _swipeFromColumn = _swipeFromRow = NSNotFound;
 
         _selectionSprite = [SKSpriteNode node];
+
+        [self p_preloadResources];
     }
 
     return self;
@@ -175,6 +184,8 @@ static const CGFloat kTileHeight = 36.0f;
     moveB.timingMode = SKActionTimingEaseOut;
 
     [swap.cookieB.sprite runAction:moveB];
+
+    [self runAction:self.swapSound];
 }
 
 - (void)animateInvalidSwap:(HRYSwap *)swap completion:(dispatch_block_t)completion {
@@ -191,6 +202,8 @@ static const CGFloat kTileHeight = 36.0f;
 
     [swap.cookieA.sprite runAction:[SKAction sequence:@[moveA, moveB, [SKAction runBlock:completion]]]];
     [swap.cookieB.sprite runAction:[SKAction sequence:@[moveB, moveA]]];
+
+    [self runAction:self.invalidSwapSound];
 }
 
 #pragma mark - Private
@@ -269,6 +282,14 @@ static const CGFloat kTileHeight = 36.0f;
         [SKAction fadeOutWithDuration:0.3],
         [SKAction removeFromParent]
     ]]];
+}
+
+- (void)p_preloadResources {
+    _swapSound = [SKAction playSoundFileNamed:@"Chomp.wav" waitForCompletion:NO];
+    _invalidSwapSound = [SKAction playSoundFileNamed:@"Error.wav" waitForCompletion:NO];
+    _matchSound = [SKAction playSoundFileNamed:@"Ka-Ching.wav" waitForCompletion:NO];
+    _failingCookieSound = [SKAction playSoundFileNamed:@"Scrape.wav" waitForCompletion:NO];
+    _addCookieSound = [SKAction playSoundFileNamed:@"Drip.wav" waitForCompletion:NO];
 }
 
 @end
