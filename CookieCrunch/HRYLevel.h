@@ -25,4 +25,6 @@ extern const NSInteger HRYLevelNumRows;
 - (NSSet *)shuffle;
 - (void)performSwap:(HRYSwap *)swap;
 
+- (BOOL)isPossibleSwap:(HRYSwap *)swap;
+
 @end

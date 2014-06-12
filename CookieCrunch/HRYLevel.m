@@ -106,6 +106,10 @@ const NSInteger HRYLevelNumRows    = 9;
     swap.cookieA.row = rowB;
 }
 
+- (BOOL)isPossibleSwap:(HRYSwap *)swap {
+    return [self.possibleSwaps containsObject:swap];
+}
+
 #pragma mark - Private
 
 - (NSSet *)p_createInitialCookies {
