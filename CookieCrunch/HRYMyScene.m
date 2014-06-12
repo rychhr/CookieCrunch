@@ -177,6 +177,22 @@ static const CGFloat kTileHeight = 36.0f;
     [swap.cookieB.sprite runAction:moveB];
 }
 
+- (void)animateInvalidSwap:(HRYSwap *)swap completion:(dispatch_block_t)completion {
+    swap.cookieA.sprite.zPosition = 100.0f;
+    swap.cookieB.sprite.zPosition = 90.0f;
+
+    const NSTimeInterval duration = 0.2;
+
+    SKAction *moveA = [SKAction moveTo:swap.cookieB.sprite.position duration:duration];
+    moveA.timingMode = SKActionTimingEaseOut;
+
+    SKAction *moveB = [SKAction moveTo:swap.cookieA.sprite.position duration:duration];
+    moveB.timingMode = SKActionTimingEaseOut;
+
+    [swap.cookieA.sprite runAction:[SKAction sequence:@[moveA, moveB, [SKAction runBlock:completion]]]];
+    [swap.cookieB.sprite runAction:[SKAction sequence:@[moveB, moveA]]];
+}
+
 #pragma mark - Private
 
 /**

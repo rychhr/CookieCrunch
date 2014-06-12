@@ -36,4 +36,6 @@
  */
 - (void)animateSwap:(HRYSwap *)swap completion:(dispatch_block_t)completion;
 
+- (void)animateInvalidSwap:(HRYSwap *)swap completion:(dispatch_block_t)completion;
+
 @end
