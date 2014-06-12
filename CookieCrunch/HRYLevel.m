@@ -16,6 +16,8 @@ const NSInteger HRYLevelNumRows    = 9;
 
 @interface HRYLevel ()
 
+@property (nonatomic, strong) NSSet *possibleSwaps;
+
 @end
 
 @implementation HRYLevel {
@@ -75,7 +77,18 @@ const NSInteger HRYLevelNumRows    = 9;
 }
 
 - (NSSet *)shuffle {
-    return [self p_createInitialCookies];
+    NSSet *set;
+
+    do {
+        set = [self p_createInitialCookies];
+
+        [self p_detectPossibleSwaps];
+
+        NSLog(@"possible swaps: %@", self.possibleSwaps);
+    }
+    while ([self.possibleSwaps count] == 0);
+
+    return set;
 }
 
 - (void)performSwap:(HRYSwap *)swap {
@@ -171,6 +184,101 @@ const NSInteger HRYLevelNumRows    = 9;
     }
 
     return dictionary;
+}
+
+- (BOOL)p_hasChainAtColumn:(NSInteger)column row:(NSInteger)row {
+    NSUInteger cookieType = _cookies[column][row].cookieType;
+
+    NSUInteger horzLength = 1;
+
+    // Look left
+    for (NSInteger i = column - 1;
+         i >= 0 && _cookies[i][row].cookieType == cookieType; i--, horzLength++);
+
+    // Look right
+    for (NSInteger i = column + 1;
+         i < HRYLevelNumColumns && _cookies[i][row].cookieType == cookieType; i++, horzLength++);
+
+    if (horzLength >= 3) {
+        return YES;
+    }
+
+    NSUInteger vertLength = 1;
+
+    // Look below (row 0 is at the bottom)
+    for (NSInteger i = row - 1;
+         i >= 0 && _cookies[column][i].cookieType == cookieType; i--, vertLength++);
+
+    // Look above
+    for (NSInteger i = row + 1;
+         i < HRYLevelNumRows && _cookies[column][i].cookieType == cookieType; i++, vertLength++);
+
+    return (vertLength >= 3);
+}
+
+- (void)p_detectPossibleSwaps {
+    NSMutableSet *set = [NSMutableSet set];
+
+    for (NSInteger row = 0; row < HRYLevelNumRows; row++) {
+
+        for (NSInteger column = 0; column < HRYLevelNumColumns; column++) {
+            HRYCookie *cookie = _cookies[column][row];
+
+            if (cookie) {
+
+                // Is is possible to swap this cookie with the one on the right?
+                if (column < HRYLevelNumColumns - 1) {
+
+                    // Have a cookie in this spot? If there is no tile, there is no cookie.
+                    HRYCookie *other = _cookies[column + 1][row];
+
+                    if (other) {
+
+                        // Swap them
+                        _cookies[column][row] = other;
+                        _cookies[column + 1][row] = cookie;
+
+                        // Is either cookie now part of a chain?
+                        if ([self p_hasChainAtColumn:column + 1 row:row] ||
+                            [self p_hasChainAtColumn:column row:row]) {
+                            HRYSwap *swap = [[HRYSwap alloc] init];
+                            swap.cookieA = cookie;
+                            swap.cookieB = other;
+                            [set addObject:swap];
+                        }
+
+                        // Swap them back
+                        _cookies[column][row] = cookie;
+                        _cookies[column + 1][row] = other;
+                    }
+                }
+
+                // Is is possible to swap this cookie with the one on the above?
+                if (row < HRYLevelNumRows - 1) {
+                    HRYCookie *other = _cookies[column][row + 1];
+
+                    if (other) {
+                        // Swap them
+                        _cookies[column][row] = other;
+                        _cookies[column][row + 1] = cookie;
+
+                        if ([self p_hasChainAtColumn:column row:row + 1] ||
+                            [self p_hasChainAtColumn:column row:row]) {
+                            HRYSwap *swap = [[HRYSwap alloc] init];
+                            swap.cookieA = cookie;
+                            swap.cookieB = other;
+                            [set addObject:swap];
+                        }
+
+                        _cookies[column][row] = cookie;
+                        _cookies[column][row + 1] = other;
+                    }
+                }
+            }
+        }
+    }
+
+    self.possibleSwaps = set;
 }
 
 @end
