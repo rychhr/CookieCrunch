@@ -24,9 +24,10 @@ extern const NSInteger HRYLevelNumRows;
 - (HRYCookie *)cookieAtColumn:(NSInteger)column row:(NSInteger)row;
 
 - (NSSet *)shuffle;
-- (void)performSwap:(HRYSwap *)swap;
 
+- (void)performSwap:(HRYSwap *)swap;
 - (BOOL)isPossibleSwap:(HRYSwap *)swap;
+- (void)detectPossibleSwaps;
 
 - (NSSet *)removeMatches;
 

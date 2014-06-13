@@ -109,6 +109,11 @@
 - (void)p_handleMatches {
     NSSet *chains = [self.level removeMatches];
 
+    if ([chains count] == 0) {
+        [self p_beginNextTurn];
+        return;
+    }
+
     [self.scene animateMatchedCookies:chains completion:^{
         NSArray *columns = [self.level fillHoles];
 
@@ -116,10 +121,15 @@
             NSArray *columns = [self.level topUpCookies];
 
             [self.scene animateNewCookies:columns completion:^{
-                self.view.userInteractionEnabled = YES;
+                [self p_handleMatches];
             }];
         }];
     }];
+}
+
+- (void)p_beginNextTurn {
+    [self.level detectPossibleSwaps];
+    self.view.userInteractionEnabled = YES;
 }
 
 @end
