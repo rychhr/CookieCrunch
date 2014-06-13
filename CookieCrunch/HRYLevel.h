@@ -30,4 +30,11 @@ extern const NSInteger HRYLevelNumRows;
 
 - (NSSet *)removeMatches;
 
+/**
+ *  This method detects where there are empty tiles and shifts any cookies down to fill up those tiles.
+ *
+ *  @return an array containing all the cookies that have been moved down, organized by column.
+ */
+- (NSArray *)fillHoles;
+
 @end

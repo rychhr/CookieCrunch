@@ -225,6 +225,33 @@ static const CGFloat kTileHeight = 36.0f;
     [self runAction:[SKAction sequence:@[[SKAction waitForDuration:0.3], [SKAction runBlock:completion]]]];
 }
 
+- (void)animateFallingCookies:(NSArray *)columns completion:(dispatch_block_t)completion {
+    __block NSTimeInterval longestDuration = 0.0;
+
+    for (NSArray *array in columns) {
+        [array enumerateObjectsUsingBlock:^(HRYCookie *cookie, NSUInteger idx, BOOL *stop) {
+            CGPoint newPosition = [self p_pointForColumn:cookie.column row:cookie.row];
+            NSTimeInterval delay = 0.05 + (0.15 * idx);
+            NSTimeInterval duration = ((cookie.sprite.position.y - newPosition.y) / kTileHeight) * 0.1;
+
+            longestDuration = MAX(longestDuration, duration + delay);
+
+            SKAction *moveAction = [SKAction moveTo:newPosition duration:duration];
+            moveAction.timingMode = SKActionTimingEaseOut;
+
+            [cookie.sprite runAction:[SKAction sequence:@[
+                [SKAction waitForDuration:delay],
+                [SKAction group:@[moveAction, self.failingCookieSound]]
+            ]]];
+        }];
+    }
+
+    [self runAction:[SKAction sequence:@[
+        [SKAction waitForDuration:longestDuration],
+        [SKAction runBlock:completion]
+    ]]];
+}
+
 #pragma mark - Private
 
 /**

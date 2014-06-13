@@ -122,6 +122,40 @@ const NSInteger HRYLevelNumRows    = 9;
     return [horizontalChains setByAddingObjectsFromSet:verticalChains];
 }
 
+- (NSArray *)fillHoles {
+    NSMutableArray *columns = [@[] mutableCopy];
+
+    for (NSInteger column = 0; column < HRYLevelNumColumns; column++) {
+        NSMutableArray *array;
+
+        for (NSInteger row = 0; row < HRYLevelNumRows; row++) {
+
+            if (_tiles[column][row] && !_cookies[column][row]) {
+
+                for (NSInteger lookup = row + 1; lookup < HRYLevelNumRows; lookup++) {
+                    HRYCookie *cookie = _cookies[column][lookup];
+
+                    if (cookie) {
+                        _cookies[column][lookup] = nil;
+                        _cookies[column][row] = cookie;
+                        cookie.row = row;
+
+                        if (!array) {
+                            array = [@[] mutableCopy];
+                            [columns addObject:array];
+                        }
+                        [array addObject:cookie];
+
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    return [columns copy];
+}
+
 #pragma mark - Private
 
 - (NSSet *)p_createInitialCookies {
