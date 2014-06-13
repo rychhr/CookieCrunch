@@ -42,4 +42,6 @@
 
 - (void)animateFallingCookies:(NSArray *)columns completion:(dispatch_block_t)completion;
 
+- (void)animateNewCookies:(NSArray *)columns completion:(dispatch_block_t)completion;
+
 @end

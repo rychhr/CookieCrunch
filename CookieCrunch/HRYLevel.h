@@ -37,4 +37,11 @@ extern const NSInteger HRYLevelNumRows;
  */
 - (NSArray *)fillHoles;
 
+/**
+ *  This method adds new cookies to fill the columns to the top.
+ *
+ *  @return the new HRYCookie objects for each column that had empty tiles.
+ */
+- (NSArray *)topUpCookies;
+
 @end

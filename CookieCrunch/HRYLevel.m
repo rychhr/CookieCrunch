@@ -156,6 +156,41 @@ const NSInteger HRYLevelNumRows    = 9;
     return [columns copy];
 }
 
+- (NSArray *)topUpCookies {
+    NSMutableArray *columns = [@[] mutableCopy];
+
+    NSUInteger cookieType = 0;
+
+    for (NSInteger column = 0; column < HRYLevelNumColumns; column++) {
+        NSMutableArray *array;
+
+        // Loop through the column from top to bottom
+        for (NSInteger row = HRYLevelNumRows - 1; row >= 0 && !_cookies[column][row]; row--) {
+
+            // Ignore gaps in the level
+            if (_tiles[column][row]) {
+                NSUInteger newCookieType;
+
+                do {
+                    newCookieType = arc4random_uniform(HRYCookieNumCookieTypes) + 1;
+                } while (newCookieType == cookieType);
+
+                cookieType = newCookieType;
+
+                HRYCookie *cookie = [self p_createCookieAtColumn:column row:row withType:cookieType];
+
+                if (!array) {
+                    array = [@[] mutableCopy];
+                    [columns addObject:array];
+                }
+                [array addObject:cookie];
+            }
+        }
+    }
+
+    return [columns copy];
+}
+
 #pragma mark - Private
 
 - (NSSet *)p_createInitialCookies {

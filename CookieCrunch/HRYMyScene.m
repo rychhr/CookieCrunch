@@ -252,6 +252,47 @@ static const CGFloat kTileHeight = 36.0f;
     ]]];
 }
 
+- (void)animateNewCookies:(NSArray *)columns completion:(dispatch_block_t)completion {
+    __block NSTimeInterval longestDuration = 0.0;
+
+    for (NSArray *array in columns) {
+        NSInteger startRow = ((HRYCookie *)[array firstObject]).row + 1;
+
+        [array enumerateObjectsUsingBlock:^(HRYCookie *cookie, NSUInteger idx, BOOL *stop) {
+            SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:[cookie spriteName]];
+            sprite.position = [self p_pointForColumn:cookie.column row:startRow];
+
+            [self.cookiesLayer addChild:sprite];
+            cookie.sprite = sprite;
+
+            NSTimeInterval delay = 0.1 + 0.2 * ([array count] - idx - 1);
+            NSTimeInterval duration = (startRow - cookie.row) * 0.1;
+
+            longestDuration = MAX(longestDuration, duration + delay);
+
+            CGPoint newPosition = [self p_pointForColumn:cookie.column row:cookie.row];
+            SKAction *moveAction = [SKAction moveTo:newPosition duration:duration];
+            moveAction.timingMode = SKActionTimingEaseOut;
+
+            cookie.sprite.alpha = 0.0f;
+
+            [cookie.sprite runAction:[SKAction sequence:@[
+                [SKAction waitForDuration:delay],
+                [SKAction group:@[
+                    [SKAction fadeInWithDuration:0.05],
+                    moveAction,
+                    self.addCookieSound
+                ]]
+            ]]];
+        }];
+    }
+
+    [self runAction:[SKAction sequence:@[
+        [SKAction waitForDuration:longestDuration],
+        [SKAction runBlock:completion]
+    ]]];
+}
+
 #pragma mark - Private
 
 /**
