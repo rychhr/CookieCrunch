@@ -10,6 +10,7 @@
 #import "HRYCookie.h"
 #import "HRYTile.h"
 #import "HRYSwap.h"
+#import "HRYChain.h"
 
 const NSInteger HRYLevelNumColumns = 9;
 const NSInteger HRYLevelNumRows    = 9;
@@ -108,6 +109,17 @@ const NSInteger HRYLevelNumRows    = 9;
 
 - (BOOL)isPossibleSwap:(HRYSwap *)swap {
     return [self.possibleSwaps containsObject:swap];
+}
+
+- (NSSet *)removeMatches {
+    NSSet *horizontalChains = [self p_detectHorizontalMatches];
+    NSSet *verticalChains = [self p_detectVerticalMatches];
+
+    NSLog(@"Horizontal matches: %@", horizontalChains);
+    NSLog(@"Vertical matches: %@", verticalChains);
+
+    // Combine results into a single set
+    return [horizontalChains setByAddingObjectsFromSet:verticalChains];
 }
 
 #pragma mark - Private
@@ -283,6 +295,77 @@ const NSInteger HRYLevelNumRows    = 9;
     }
 
     self.possibleSwaps = set;
+}
+
+- (NSSet *)p_detectHorizontalMatches {
+    NSMutableSet *set = [NSMutableSet set];
+
+    for (NSInteger row = 0; row < HRYLevelNumRows; row++) {
+
+        // 1. the cookies at the last two columns can never begin a new chain.
+        // 2. the incrementing happens conditionally inside the loop body.
+        for (NSInteger column = 0; column < HRYLevelNumColumns - 2;) {
+
+            if (_cookies[column][row]) {
+                NSUInteger matchType = _cookies[column][row].cookieType;
+
+                if (_cookies[column + 1][row].cookieType == matchType &&
+                    _cookies[column + 2][row].cookieType == matchType) {
+                    HRYChain *chain = [[HRYChain alloc] init];
+                    chain.chainType = HRYChainTypeHorizontal;
+
+                    do {
+                        [chain addCookie:_cookies[column][row]];
+                        column += 1;
+                    }
+                    while (column < HRYLevelNumColumns && _cookies[column][row].cookieType == matchType);
+
+                    [set addObject:chain];
+
+                    continue;
+                }
+            }
+
+            // There is no chain, so skip over the cookie.
+            column += 1;
+        }
+    }
+
+    return [set copy];
+}
+
+- (NSSet *)p_detectVerticalMatches {
+    NSMutableSet *set = [NSMutableSet set];
+
+    for (NSInteger column = 0; column < HRYLevelNumColumns; column++) {
+
+        for (NSInteger row = 0; row < HRYLevelNumRows - 2;) {
+
+            if (_cookies[column][row]) {
+                NSUInteger matchType = _cookies[column][row].cookieType;
+
+                if (_cookies[column][row + 1].cookieType == matchType &&
+                    _cookies[column][row + 2].cookieType == matchType) {
+                    HRYChain *chain = [[HRYChain alloc] init];
+                    chain.chainType = HRYChainTypeVertical;
+
+                    do {
+                        [chain addCookie:_cookies[column][row]];
+                        row += 1;
+                    }
+                    while (row < HRYLevelNumRows && _cookies[column][row].cookieType == matchType);
+
+                    [set addObject:chain];
+
+                    continue;
+                }
+            }
+
+            row += 1;
+        }
+    }
+
+    return [set copy];
 }
 
 @end

@@ -8,6 +8,18 @@
 
 @import Foundation;
 
+@class HRYCookie;
+
+typedef NS_ENUM(NSUInteger, HRYChainType) {
+    HRYChainTypeHorizontal,
+    HRYChainTypeVertical,
+};
+
 @interface HRYChain : NSObject
+
+@property (nonatomic, copy, readonly) NSArray *cookies;
+@property (nonatomic, assign) HRYChainType chainType;
+
+- (void)addCookie:(HRYCookie *)cookie;
 
 @end

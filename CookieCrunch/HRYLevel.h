@@ -11,6 +11,7 @@
 @class HRYCookie;
 @class HRYTile;
 @class HRYSwap;
+@class HRYChain;
 
 extern const NSInteger HRYLevelNumColumns;
 extern const NSInteger HRYLevelNumRows;
@@ -26,5 +27,7 @@ extern const NSInteger HRYLevelNumRows;
 - (void)performSwap:(HRYSwap *)swap;
 
 - (BOOL)isPossibleSwap:(HRYSwap *)swap;
+
+- (NSSet *)removeMatches;
 
 @end
