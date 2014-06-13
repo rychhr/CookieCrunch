@@ -10,6 +10,7 @@
 #import "HRYCookie.h"
 #import "HRYLevel.h"
 #import "HRYSwap.h"
+#import "HRYChain.h"
 
 static const CGFloat kTileWidth  = 32.0f;
 static const CGFloat kTileHeight = 36.0f;
@@ -204,6 +205,24 @@ static const CGFloat kTileHeight = 36.0f;
     [swap.cookieB.sprite runAction:[SKAction sequence:@[moveB, moveA]]];
 
     [self runAction:self.invalidSwapSound];
+}
+
+- (void)animateMatchedCookies:(NSSet *)chains completion:(dispatch_block_t)completion {
+    for (HRYChain *chain in chains) {
+
+        for (HRYCookie *cookie in chain.cookies) {
+
+            if (cookie.sprite) {
+                SKAction *scaleAction = [SKAction scaleTo:0.1f duration:0.3];
+                scaleAction.timingMode = SKActionTimingEaseOut;
+                [cookie.sprite runAction:[SKAction sequence:@[scaleAction, [SKAction removeFromParent]]]];
+            }
+        }
+    }
+
+    [self runAction:self.matchSound];
+
+    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:0.3], [SKAction runBlock:completion]]]];
 }
 
 #pragma mark - Private

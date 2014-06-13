@@ -51,7 +51,6 @@
             [self.level performSwap:swap];
             [self.scene animateSwap:swap completion:^{
                 [self p_handleMatches];
-                //self.view.userInteractionEnabled = YES;
             }];
         }
         else {
@@ -110,7 +109,9 @@
 - (void)p_handleMatches {
     NSSet *chains = [self.level removeMatches];
 
-    // TODO: do something with the set
+    [self.scene animateMatchedCookies:chains completion:^{
+        self.view.userInteractionEnabled = YES;
+    }];
 }
 
 @end

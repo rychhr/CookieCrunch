@@ -115,8 +115,8 @@ const NSInteger HRYLevelNumRows    = 9;
     NSSet *horizontalChains = [self p_detectHorizontalMatches];
     NSSet *verticalChains = [self p_detectVerticalMatches];
 
-    NSLog(@"Horizontal matches: %@", horizontalChains);
-    NSLog(@"Vertical matches: %@", verticalChains);
+    [self p_removeCookies:horizontalChains];
+    [self p_removeCookies:verticalChains];
 
     // Combine results into a single set
     return [horizontalChains setByAddingObjectsFromSet:verticalChains];
@@ -366,6 +366,14 @@ const NSInteger HRYLevelNumRows    = 9;
     }
 
     return [set copy];
+}
+
+- (void)p_removeCookies:(NSSet *)chains {
+    for (HRYChain *chain in chains) {
+        for (HRYCookie *cookie in chain.cookies) {
+            _cookies[cookie.column][cookie.row] = nil;
+        }
+    }
 }
 
 @end
