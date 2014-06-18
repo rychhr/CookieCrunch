@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller-->
         <scene sceneID="CtS-rA-C9T">
             <objects>
                 <viewController id="LVB-YS-i5n" customClass="HRYViewController" sceneMemberID="viewController">
@@ -15,8 +15,80 @@
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6B-dR-Vuv">
+                                <rect key="frame" x="20" y="45" width="72" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="rsT-rd-lJA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Da3-dN-Mof">
+                                <rect key="frame" x="124" y="45" width="72" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="zJP-tS-dNy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwx-Tq-MQ4">
+                                <rect key="frame" x="228" y="45" width="72" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="9H7-BO-bqK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXy-5t-qP0">
+                                <rect key="frame" x="30" y="24" width="53" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moves:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEL-4S-jwh">
+                                <rect key="frame" x="135" y="24" width="50" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1t1-tW-WBu">
+                                <rect key="frame" x="242" y="24" width="44" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BEL-4S-jwh" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="24" id="3PL-PU-qsU"/>
+                            <constraint firstAttribute="centerX" secondItem="Da3-dN-Mof" secondAttribute="centerX" id="CgA-FF-etK"/>
+                            <constraint firstItem="Pwx-Tq-MQ4" firstAttribute="top" secondItem="1t1-tW-WBu" secondAttribute="bottom" constant="4" id="GYZ-iW-uwu"/>
+                            <constraint firstItem="Da3-dN-Mof" firstAttribute="top" secondItem="BEL-4S-jwh" secondAttribute="bottom" constant="4" id="NWY-TF-Xtf"/>
+                            <constraint firstItem="BEL-4S-jwh" firstAttribute="baseline" secondItem="aXy-5t-qP0" secondAttribute="baseline" id="Okg-Z2-4Na"/>
+                            <constraint firstAttribute="trailing" secondItem="Pwx-Tq-MQ4" secondAttribute="trailing" constant="20" id="apP-F7-nBK"/>
+                            <constraint firstAttribute="centerX" secondItem="BEL-4S-jwh" secondAttribute="centerX" id="b0c-0M-Pty"/>
+                            <constraint firstItem="Pwx-Tq-MQ4" firstAttribute="centerX" secondItem="1t1-tW-WBu" secondAttribute="centerX" id="diS-8b-fv3"/>
+                            <constraint firstItem="aXy-5t-qP0" firstAttribute="centerX" secondItem="o6B-dR-Vuv" secondAttribute="centerX" id="oQ6-GM-x2r"/>
+                            <constraint firstItem="o6B-dR-Vuv" firstAttribute="top" secondItem="aXy-5t-qP0" secondAttribute="bottom" constant="4" id="swQ-lH-Coy"/>
+                            <constraint firstItem="BEL-4S-jwh" firstAttribute="baseline" secondItem="1t1-tW-WBu" secondAttribute="baseline" id="woi-lu-HIP"/>
+                            <constraint firstItem="o6B-dR-Vuv" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leading" constant="20" id="ySc-qD-kwQ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="movesLabel" destination="Da3-dN-Mof" id="pau-bP-3eq"/>
+                        <outlet property="scoreLabel" destination="Pwx-Tq-MQ4" id="iuY-Na-hGl"/>
+                        <outlet property="targetLabel" destination="o6B-dR-Vuv" id="2fx-er-Xv3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>

@@ -54,6 +54,9 @@ const NSInteger HRYLevelNumRows    = 9;
                 }
             }];
         }];
+
+        _targetScore = [dictionary[@"targetScore"] unsignedIntegerValue];
+        _maximumMoves = [dictionary[@"moves"] unsignedIntegerValue];
     }
 
     return self;
@@ -182,6 +185,9 @@ const NSInteger HRYLevelNumRows    = 9;
 
     [self p_removeCookies:horizontalChains];
     [self p_removeCookies:verticalChains];
+
+    [self p_calculateScores:horizontalChains];
+    [self p_calculateScores:verticalChains];
 
     // Combine results into a single set
     return [horizontalChains setByAddingObjectsFromSet:verticalChains];
@@ -442,6 +448,12 @@ const NSInteger HRYLevelNumRows    = 9;
         for (HRYCookie *cookie in chain.cookies) {
             _cookies[cookie.column][cookie.row] = nil;
         }
+    }
+}
+
+- (void)p_calculateScores:(NSSet *)chains {
+    for (HRYChain *chain in chains) {
+        chain.score = 60 * ([chain.cookies count] - 2);
     }
 }
 

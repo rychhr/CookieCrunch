@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, HRYChainType) {
 
 @property (nonatomic, copy, readonly) NSArray *cookies;
 @property (nonatomic, assign) HRYChainType chainType;
+@property (nonatomic, assign) NSUInteger score;
 
 - (void)addCookie:(HRYCookie *)cookie;
 

@@ -9,11 +9,19 @@
 #import "HRYViewController.h"
 #import "HRYMyScene.h"
 #import "HRYLevel.h"
+#import "HRYChain.h"
 
 @interface HRYViewController ()
 
 @property (nonatomic, strong) HRYLevel *level;
 @property (nonatomic, strong) HRYMyScene *scene;
+
+@property (nonatomic, assign) NSUInteger movesLeft;
+@property (nonatomic, assign) NSUInteger score;
+
+@property (nonatomic, weak) IBOutlet UILabel *targetLabel;
+@property (nonatomic, weak) IBOutlet UILabel *movesLabel;
+@property (nonatomic, weak) IBOutlet UILabel *scoreLabel;
 
 @end
 
@@ -98,6 +106,10 @@
 #pragma mark - Private
 
 - (void)p_beginGame {
+    self.movesLeft = self.level.maximumMoves;
+    self.score = 0;
+    [self p_updateLabels];
+
     [self p_shuffle];
 }
 
@@ -115,6 +127,13 @@
     }
 
     [self.scene animateMatchedCookies:chains completion:^{
+
+        // Add the new scores to the total.
+        for (HRYChain *chain in chains) {
+            self.score += chain.score;
+        }
+        [self p_updateLabels];
+
         NSArray *columns = [self.level fillHoles];
 
         [self.scene animateFallingCookies:columns completion:^{
@@ -130,6 +149,12 @@
 - (void)p_beginNextTurn {
     [self.level detectPossibleSwaps];
     self.view.userInteractionEnabled = YES;
+}
+
+- (void)p_updateLabels {
+    self.targetLabel.text = [NSString stringWithFormat:@"%lu", (long)self.level.targetScore];
+    self.movesLabel.text = [NSString stringWithFormat:@"%lu", (long)self.movesLeft];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%lu", (long)self.score];
 }
 
 @end

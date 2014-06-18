@@ -18,6 +18,10 @@ extern const NSInteger HRYLevelNumRows;
 
 @interface HRYLevel : NSObject
 
+// The target score and the maximum number of moves are stored in the JSON level file
+@property (nonatomic, assign) NSUInteger targetScore;
+@property (nonatomic, assign) NSUInteger maximumMoves;
+
 - (instancetype)initWithFile:(NSString *)filename;
 
 - (HRYTile *)tileAtColumn:(NSInteger)column row:(NSInteger)row;
