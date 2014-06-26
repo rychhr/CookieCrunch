@@ -152,7 +152,18 @@ static const CGFloat kTileHeight = 36.0f;
         SKSpriteNode *sprite =[SKSpriteNode spriteNodeWithImageNamed:[cookie spriteName]];
         sprite.position = [self p_pointForColumn:cookie.column row:cookie.row];
         [self.cookiesLayer addChild:sprite];
+
         cookie.sprite = sprite;
+        cookie.sprite.alpha = 0.0f;
+        [cookie.sprite setScale:0.5f];
+
+        [cookie.sprite runAction:[SKAction sequence:@[
+            [SKAction waitForDuration:0.25 withRange:0.5],
+            [SKAction group:@[
+                [SKAction fadeInWithDuration:0.25],
+                [SKAction scaleTo:1.0f duration:0.25]
+            ]]
+        ]]];
     }
 }
 

@@ -26,6 +26,8 @@
 @property (nonatomic, weak) IBOutlet UIImageView *gameOverPanel;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (nonatomic, weak) IBOutlet UIButton *shuffleButton;
+
 @end
 
 @implementation HRYViewController
@@ -108,6 +110,13 @@
     }
 }
 
+#pragma mark - Actions
+
+- (IBAction)shuffleButtonDidTouchUpInside:(id)sender {
+    [self p_shuffle];
+    [self p_decrementMoves];
+}
+
 #pragma mark - Private
 
 - (void)p_beginGame {
@@ -186,6 +195,8 @@
 - (void)p_showGameOver {
     [self.scene animateGameOver];
 
+    self.shuffleButton.hidden = YES;
+
     self.gameOverPanel.hidden = NO;
     self.scene.userInteractionEnabled = NO;
 
@@ -196,6 +207,8 @@
 - (void)p_hideGameOver {
     [self.view removeGestureRecognizer:self.tapGestureRecognizer];
     self.tapGestureRecognizer = nil;
+
+    self.shuffleButton.hidden = NO;
 
     self.gameOverPanel.hidden = YES;
     self.scene.userInteractionEnabled = YES;
