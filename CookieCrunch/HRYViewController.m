@@ -151,12 +151,19 @@
     [self.level resetComboMultiplier];
     [self.level detectPossibleSwaps];
     self.view.userInteractionEnabled = YES;
+
+    [self p_decrementMoves];
 }
 
 - (void)p_updateLabels {
     self.targetLabel.text = [NSString stringWithFormat:@"%lu", (long)self.level.targetScore];
     self.movesLabel.text = [NSString stringWithFormat:@"%lu", (long)self.movesLeft];
     self.scoreLabel.text = [NSString stringWithFormat:@"%lu", (long)self.score];
+}
+
+- (void)p_decrementMoves {
+    self.movesLeft--;
+    [self p_updateLabels];
 }
 
 @end
