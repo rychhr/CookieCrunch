@@ -7,6 +7,7 @@
 //
 
 #import "HRYViewController.h"
+@import AVFoundation;
 #import "HRYMyScene.h"
 #import "HRYLevel.h"
 #import "HRYChain.h"
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
 @property (nonatomic, weak) IBOutlet UIButton *shuffleButton;
+
+@property (nonatomic, strong) AVAudioPlayer *backgroundMusic;
 
 @end
 
@@ -79,6 +82,11 @@
 
     // Present the scene.
     [skView presentScene:self.scene];
+
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"Mining by Moonlight" withExtension:@"mp3"];
+    self.backgroundMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:URL error:nil];
+    self.backgroundMusic.numberOfLoops = -1;
+    [self.backgroundMusic play];
 
     // Let's start the game!
     [self p_beginGame];
