@@ -34,6 +34,7 @@
 		479CA1A2194821B700E9236C /* HRYTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 479CA1A1194821B700E9236C /* HRYTile.m */; };
 		47AF61E41947250F00B898B9 /* HRYLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AF61E31947250F00B898B9 /* HRYLevel.m */; };
 		47DF4F94194AD488005BC3CB /* HRYChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 47DF4F93194AD488005BC3CB /* HRYChain.m */; };
+		47E37EBD195BE84200CBB35F /* Grid.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 47E37EBC195BE84200CBB35F /* Grid.atlas */; };
 		47F2254C19496002009A29ED /* Chomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 47F2254619496002009A29ED /* Chomp.wav */; };
 		47F2254D19496002009A29ED /* Drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 47F2254719496002009A29ED /* Drip.wav */; };
 		47F2254E19496002009A29ED /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 47F2254819496002009A29ED /* Error.wav */; };
@@ -91,6 +92,7 @@
 		47AF61E31947250F00B898B9 /* HRYLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRYLevel.m; sourceTree = "<group>"; };
 		47DF4F92194AD488005BC3CB /* HRYChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRYChain.h; sourceTree = "<group>"; };
 		47DF4F93194AD488005BC3CB /* HRYChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRYChain.m; sourceTree = "<group>"; };
+		47E37EBC195BE84200CBB35F /* Grid.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Grid.atlas; sourceTree = "<group>"; };
 		47F2254619496002009A29ED /* Chomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chomp.wav; sourceTree = "<group>"; };
 		47F2254719496002009A29ED /* Drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drip.wav; sourceTree = "<group>"; };
 		47F2254819496002009A29ED /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Error.wav; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				47F2254519496002009A29ED /* Sounds */,
 				479CA1951948213800E9236C /* Levels */,
 				47852F661946E30B0095AB68 /* Sprites.atlas */,
+				47E37EBC195BE84200CBB35F /* Grid.atlas */,
 				47788A921946D2F20008B100 /* HRYAppDelegate.h */,
 				47788A931946D2F20008B100 /* HRYAppDelegate.m */,
 				47788A951946D2F20008B100 /* Main.storyboard */,
@@ -318,6 +321,7 @@
 				47788A8E1946D2F20008B100 /* InfoPlist.strings in Resources */,
 				47F2254D19496002009A29ED /* Drip.wav in Resources */,
 				479CA19F1948213800E9236C /* Level_4.json in Resources */,
+				47E37EBD195BE84200CBB35F /* Grid.atlas in Resources */,
 				47F2254E19496002009A29ED /* Error.wav in Resources */,
 				479CA19D1948213800E9236C /* Level_2.json in Resources */,
 				47F2255119496002009A29ED /* Scrape.wav in Resources */,
