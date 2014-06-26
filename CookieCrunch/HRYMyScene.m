@@ -49,6 +49,8 @@ static const CGFloat kTileHeight = 36.0f;
         _gameLayer = [SKNode node];
         [self addChild:_gameLayer];
 
+        _gameLayer.hidden = YES;
+
         CGPoint layerPosition = CGPointMake(
             -(kTileWidth * HRYLevelNumColumns) / 2,
             -(kTileHeight * HRYLevelNumRows) / 2
@@ -293,6 +295,25 @@ static const CGFloat kTileHeight = 36.0f;
         [SKAction waitForDuration:longestDuration],
         [SKAction runBlock:completion]
     ]]];
+}
+
+- (void)animateGameOver {
+    SKAction *action = [SKAction moveBy:CGVectorMake(0.0f, -self.size.height) duration:0.3];
+    action.timingMode = SKActionTimingEaseIn;
+    [self.gameLayer runAction:action];
+}
+
+- (void)animateBeginGame {
+    self.gameLayer.hidden = NO;
+
+    self.gameLayer.position = CGPointMake(0.0f, self.size.height);
+    SKAction *action = [SKAction moveBy:CGVectorMake(0.0f, -self.size.height) duration:0.3];
+    action.timingMode = SKActionTimingEaseOut;
+    [self.gameLayer runAction:action];
+}
+
+- (void)removeAllCookieSprites {
+    [self.cookiesLayer removeAllChildren];
 }
 
 #pragma mark - Private
