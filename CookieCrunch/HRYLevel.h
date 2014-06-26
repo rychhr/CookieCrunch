@@ -49,4 +49,6 @@ extern const NSInteger HRYLevelNumRows;
  */
 - (NSArray *)topUpCookies;
 
+- (void)resetComboMultiplier;
+
 @end

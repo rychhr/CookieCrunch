@@ -110,6 +110,7 @@
     self.score = 0;
     [self p_updateLabels];
 
+    [self.level resetComboMultiplier];
     [self p_shuffle];
 }
 
@@ -147,6 +148,7 @@
 }
 
 - (void)p_beginNextTurn {
+    [self.level resetComboMultiplier];
     [self.level detectPossibleSwaps];
     self.view.userInteractionEnabled = YES;
 }

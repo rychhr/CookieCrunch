@@ -18,6 +18,7 @@ const NSInteger HRYLevelNumRows    = 9;
 @interface HRYLevel ()
 
 @property (nonatomic, strong) NSSet *possibleSwaps;
+@property (nonatomic, assign) NSUInteger comboMultiplier;
 
 @end
 
@@ -243,7 +244,7 @@ const NSInteger HRYLevelNumRows    = 9;
                 NSUInteger newCookieType;
 
                 do {
-                    newCookieType = arc4random_uniform(HRYCookieNumCookieTypes) + 1;
+                    newCookieType = arc4random_uniform((u_int32_t)HRYCookieNumCookieTypes) + 1;
                 } while (newCookieType == cookieType);
 
                 cookieType = newCookieType;
@@ -260,6 +261,10 @@ const NSInteger HRYLevelNumRows    = 9;
     }
 
     return [columns copy];
+}
+
+- (void)resetComboMultiplier {
+    self.comboMultiplier = 1;
 }
 
 #pragma mark - Private
@@ -279,7 +284,7 @@ const NSInteger HRYLevelNumRows    = 9;
 
                 // Only look to the left or below because there are no cookies yet on the right or above
                 do {
-                    cookieType = arc4random_uniform(HRYCookieNumCookieTypes) + 1;
+                    cookieType = arc4random_uniform((u_int32_t)HRYCookieNumCookieTypes) + 1;
                 }
                 while ((column >= 2 &&
                         _cookies[column - 1][row].cookieType == cookieType &&
@@ -453,7 +458,8 @@ const NSInteger HRYLevelNumRows    = 9;
 
 - (void)p_calculateScores:(NSSet *)chains {
     for (HRYChain *chain in chains) {
-        chain.score = 60 * ([chain.cookies count] - 2);
+        chain.score = 60 * ([chain.cookies count] - 2) * self.comboMultiplier;
+        self.comboMultiplier++;
     }
 }
 
