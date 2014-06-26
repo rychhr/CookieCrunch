@@ -24,6 +24,9 @@ static const CGFloat kTileHeight = 36.0f;
 @property (nonatomic, assign) NSInteger swipeFromRow;
 @property (nonatomic, strong) SKSpriteNode *selectionSprite;
 
+@property (nonatomic, strong) SKCropNode *cropLayer;
+@property (nonatomic, strong) SKNode *maskLayer;
+
 // Sound Effetcs
 @property (nonatomic, strong) SKAction *swapSound;
 @property (nonatomic, strong) SKAction *invalidSwapSound;
@@ -60,10 +63,19 @@ static const CGFloat kTileHeight = 36.0f;
         _tilesLayer.position = layerPosition;
         [_gameLayer addChild:_tilesLayer];
 
+        _cropLayer = [SKCropNode node];
+        [_gameLayer addChild:_cropLayer];
+
+        _maskLayer = [SKNode node];
+        _maskLayer.position = layerPosition;
+
+        // A crop node only draws its children where the mask contains pixels
+        _cropLayer.maskNode = _maskLayer;
+
         _cookiesLayer = [SKNode node];
         _cookiesLayer.position = layerPosition;
 
-        [_gameLayer addChild:_cookiesLayer];
+        [_cropLayer addChild:_cookiesLayer];
 
         _swipeFromColumn = _swipeFromRow = NSNotFound;
 
@@ -173,9 +185,38 @@ static const CGFloat kTileHeight = 36.0f;
         for (NSInteger column = 0; column < HRYLevelNumColumns; column++) {
 
             if ([self.level tileAtColumn:column row:row]) {
-                SKSpriteNode *tileNode = [SKSpriteNode spriteNodeWithImageNamed:@"Tile"];
+                SKSpriteNode *tileNode = [SKSpriteNode spriteNodeWithImageNamed:@"MaskTile"];
                 tileNode.position = [self p_pointForColumn:column row:row];
 
+                [self.maskLayer addChild:tileNode];
+            }
+        }
+    }
+
+    for (NSInteger row = 0; row <= HRYLevelNumRows; row++) {
+
+        for (NSInteger column = 0; column <= HRYLevelNumColumns; column++) {
+            BOOL topLeft = (column > 0) &&
+                (row < HRYLevelNumRows) && [self.level tileAtColumn:column - 1 row:row];
+            BOOL bottomLeft = (column > 0) &&
+                (row > 0) && [self.level tileAtColumn:column - 1 row:row - 1];
+            BOOL topRight = (column < HRYLevelNumColumns) &&
+                (row < HRYLevelNumRows) && [self.level tileAtColumn:column row:row];
+            BOOL bottomRight = (column < HRYLevelNumColumns) &&
+                (row > 0) && [self.level tileAtColumn:column row:row - 1];
+
+            // The tiles are named from 0 to 15, according to the bitmask that is
+            // made by combining these four values.
+            NSUInteger value = topLeft | topRight << 1 | bottomLeft << 2 | bottomRight << 3;
+
+            // Values 0 (no tiles), 6 and 9 (two opposite tiles) are not drawn.
+            if (value != 0 && value != 6 && value != 9) {
+                NSString *name = [NSString stringWithFormat:@"Tile_%lu", (long)value];
+                SKSpriteNode *tileNode = [SKSpriteNode spriteNodeWithImageNamed:name];
+                CGPoint point = [self p_pointForColumn:column row:row];
+                point.x -= kTileWidth / 2;
+                point.y -= kTileHeight / 2;
+                tileNode.position = point;
                 [self.tilesLayer addChild:tileNode];
             }
         }
