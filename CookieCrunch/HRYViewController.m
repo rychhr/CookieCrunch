@@ -23,6 +23,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *movesLabel;
 @property (nonatomic, weak) IBOutlet UILabel *scoreLabel;
 
+@property (nonatomic, weak) IBOutlet UIImageView *gameOverPanel;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+
 @end
 
 @implementation HRYViewController
@@ -31,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.gameOverPanel.hidden = YES;
 
     // Configure the view.
     SKView *skView = (SKView *)self.view;
@@ -164,6 +169,33 @@
 - (void)p_decrementMoves {
     self.movesLeft--;
     [self p_updateLabels];
+
+    if (self.score >= self.level.targetScore) {
+        self.gameOverPanel.image = [UIImage imageNamed:@"LevelComplete"];
+        [self p_showGameOver];
+    }
+    else if (self.movesLeft == 0) {
+        self.gameOverPanel.image = [UIImage imageNamed:@"GameOver"];
+        [self p_showGameOver];
+    }
+}
+
+- (void)p_showGameOver {
+    self.gameOverPanel.hidden = NO;
+    self.scene.userInteractionEnabled = NO;
+
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(p_hideGameOver)];
+    [self.view addGestureRecognizer:self.tapGestureRecognizer];
+}
+
+- (void)p_hideGameOver {
+    [self.view removeGestureRecognizer:self.tapGestureRecognizer];
+    self.tapGestureRecognizer = nil;
+
+    self.gameOverPanel.hidden = YES;
+    self.scene.userInteractionEnabled = YES;
+
+    [self p_beginGame];
 }
 
 @end

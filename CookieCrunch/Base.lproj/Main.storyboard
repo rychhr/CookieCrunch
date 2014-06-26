@@ -67,17 +67,27 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PxV-PA-ZZJ">
+                                <rect key="frame" x="0.0" y="209" width="320" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Gkj-fc-lTI"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BEL-4S-jwh" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="24" id="3PL-PU-qsU"/>
+                            <constraint firstItem="PxV-PA-ZZJ" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leading" id="CN4-DO-7u4"/>
                             <constraint firstAttribute="centerX" secondItem="Da3-dN-Mof" secondAttribute="centerX" id="CgA-FF-etK"/>
                             <constraint firstItem="Pwx-Tq-MQ4" firstAttribute="top" secondItem="1t1-tW-WBu" secondAttribute="bottom" constant="4" id="GYZ-iW-uwu"/>
                             <constraint firstItem="Da3-dN-Mof" firstAttribute="top" secondItem="BEL-4S-jwh" secondAttribute="bottom" constant="4" id="NWY-TF-Xtf"/>
                             <constraint firstItem="BEL-4S-jwh" firstAttribute="baseline" secondItem="aXy-5t-qP0" secondAttribute="baseline" id="Okg-Z2-4Na"/>
+                            <constraint firstAttribute="trailing" secondItem="PxV-PA-ZZJ" secondAttribute="trailing" id="TQA-XF-IG4"/>
                             <constraint firstAttribute="trailing" secondItem="Pwx-Tq-MQ4" secondAttribute="trailing" constant="20" id="apP-F7-nBK"/>
                             <constraint firstAttribute="centerX" secondItem="BEL-4S-jwh" secondAttribute="centerX" id="b0c-0M-Pty"/>
                             <constraint firstItem="Pwx-Tq-MQ4" firstAttribute="centerX" secondItem="1t1-tW-WBu" secondAttribute="centerX" id="diS-8b-fv3"/>
+                            <constraint firstAttribute="centerY" secondItem="PxV-PA-ZZJ" secondAttribute="centerY" id="jCS-o8-OAz"/>
                             <constraint firstItem="aXy-5t-qP0" firstAttribute="centerX" secondItem="o6B-dR-Vuv" secondAttribute="centerX" id="oQ6-GM-x2r"/>
                             <constraint firstItem="o6B-dR-Vuv" firstAttribute="top" secondItem="aXy-5t-qP0" secondAttribute="bottom" constant="4" id="swQ-lH-Coy"/>
                             <constraint firstItem="BEL-4S-jwh" firstAttribute="baseline" secondItem="1t1-tW-WBu" secondAttribute="baseline" id="woi-lu-HIP"/>
@@ -85,6 +95,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gameOverPanel" destination="PxV-PA-ZZJ" id="LIh-Og-QP7"/>
                         <outlet property="movesLabel" destination="Da3-dN-Mof" id="pau-bP-3eq"/>
                         <outlet property="scoreLabel" destination="Pwx-Tq-MQ4" id="iuY-Na-hGl"/>
                         <outlet property="targetLabel" destination="o6B-dR-Vuv" id="2fx-er-Xv3"/>
